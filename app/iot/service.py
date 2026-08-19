@@ -48,3 +48,12 @@ class IOTService:
 
     async def send_msg(self, msg: Message) -> None:
         await self.devices[msg.device_id].send_message(msg.msg_type, msg.data)
+
+
+async def run_sequence(*functions) -> None:
+    for function in functions:
+        await function
+
+
+async def run_parallel(*functions) -> None:
+    await asyncio.gather(*functions)
